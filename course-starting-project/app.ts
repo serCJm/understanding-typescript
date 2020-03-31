@@ -21,6 +21,7 @@ const person1 = {
 let person2: {
 	name: string;
 	age: number;
+	role: [number, string]; // specifies a tuple - ts type. Note, fixed length, however, push still works on it - exception
 };
 
 console.log(person2.name);
