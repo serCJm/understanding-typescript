@@ -12,12 +12,14 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 
 const result = add(5, 8, true, "Result is: ");
 
+// note, type structure is inferred implicitly
 const person1 = {
 	name: "CJ",
 	age: 25,
 	hobbies: ["sports", "programming"]
 };
 
+// explicit type structure definition. Could do both, however, redundant.
 let person2: {
 	name: string;
 	age: number;
@@ -41,4 +43,22 @@ let mixedArr: any[];
 for (const hobby of person1.hobbies) {
 	console.log(hobby.toUpperCase());
 	// console.log(hobby.map()); // throws an error in advance because of wrong type!
+}
+
+enum Role {
+	ADMIN,
+	READ_ONLY,
+	AUTHOR
+}
+//enum Role { ADMIN='ADMIN', READ_ONLY=100, AUTHOR=5 }
+
+const person3 = {
+	name: "CJ",
+	age: 25,
+	hobbies: ["sports", "programming"],
+	role: Role.ADMIN
+};
+
+if (person3.role === Role.ADMIN) {
+	console.log("works");
 }
