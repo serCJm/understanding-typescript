@@ -11,3 +11,15 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 }
 
 const result = add(5, 8, true, "Result is: ");
+
+const person1 = {
+	name: "CJ",
+	age: 25
+};
+
+let person2: {
+	name: string;
+	age: number;
+};
+
+console.log(person2.name);
