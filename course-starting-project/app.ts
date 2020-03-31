@@ -14,7 +14,8 @@ const result = add(5, 8, true, "Result is: ");
 
 const person1 = {
 	name: "CJ",
-	age: 25
+	age: 25,
+	hobbies: ["sports", "programming"]
 };
 
 let person2: {
@@ -23,3 +24,20 @@ let person2: {
 };
 
 console.log(person2.name);
+
+let product: {
+	id: string;
+	price: number;
+	tags: string[];
+	details: {
+		title: string;
+		description: string;
+	};
+};
+
+let mixedArr: any[];
+
+for (const hobby of person1.hobbies) {
+	console.log(hobby.toUpperCase());
+	// console.log(hobby.map()); // throws an error in advance because of wrong type!
+}
