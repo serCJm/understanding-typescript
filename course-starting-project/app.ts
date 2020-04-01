@@ -109,3 +109,40 @@ function combineLiteral(
 const combineLiteralAges = combineLiteral(30, 40, "as-number");
 
 const combineLiteralNames = combineLiteral("First", "Last", "as-text");
+
+// TYPE ALIASES - CUSTOM TYPES
+// type User = { name: string; age: number };
+// const u1: User = { name: 'Max', age: 30 }; // this works!
+// function greet(user: User) {
+//     console.log('Hi, I am ' + user.name);
+//   }
+
+//   function isOlder(user: User, checkAge: number) {
+//     return checkAge > user.age;
+//   }
+
+type Combine = number | string;
+type ConversionDesc = "as-number" | "as-text";
+
+function combineCustom(
+	input1: Combine,
+	input2: Combine,
+	resultConversion: ConversionDesc
+) {
+	let result;
+	// need a runtime check
+	if (
+		(typeof input1 === "number" && typeof input2 === "number") ||
+		resultConversion === "as-number"
+	) {
+		result = +input1 + +input2;
+	} else {
+		result = input1.toString() + input2.toString();
+	}
+
+	return result;
+}
+
+const combineCustomAges = combineCustom(30, 40, "as-number");
+
+const combineCustomNames = combineCustom("First", "Last", "as-text");
