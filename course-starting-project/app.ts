@@ -1,3 +1,4 @@
+// BASIC TYPES
 function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 	// if (typeof n1 !== "number" || typeof n2 !== "number") {
 	// 	throw new Error("Incorrect input!");
@@ -12,6 +13,7 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 
 const result = add(5, 8, true, "Result is: ");
 
+// OBJECT TYPES
 // note, type structure is inferred implicitly
 const person1 = {
 	name: "CJ",
@@ -45,6 +47,7 @@ for (const hobby of person1.hobbies) {
 	// console.log(hobby.map()); // throws an error in advance because of wrong type!
 }
 
+// ENUM TYPES
 enum Role {
 	ADMIN,
 	READ_ONLY,
@@ -62,3 +65,23 @@ const person3 = {
 if (person3.role === Role.ADMIN) {
 	console.log("works");
 }
+
+// ANY TYPE
+let canHoldAnyType: any; // better avoid, negates ts checks, might use of unknown values
+
+// UNION TYPES
+function combine(input1: number | string, input2: number | string) {
+	let result;
+	// need a runtime check
+	if (typeof input1 === "number" && typeof input2 === "number") {
+		result = input1 + input2;
+	} else {
+		result = input1.toString() + input2.toString();
+	}
+
+	return result;
+}
+
+const combineAges = combine(30, 40);
+
+const combineNames = combine("First", "Last");
