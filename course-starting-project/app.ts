@@ -85,3 +85,27 @@ function combine(input1: number | string, input2: number | string) {
 const combineAges = combine(30, 40);
 
 const combineNames = combine("First", "Last");
+
+// LITERAL TYPES - exact value it should hold
+function combineLiteral(
+	input1: number | string,
+	input2: number | string,
+	resultConversion: "as-number" | "as-text"
+) {
+	let result;
+	// need a runtime check
+	if (
+		(typeof input1 === "number" && typeof input2 === "number") ||
+		resultConversion === "as-number"
+	) {
+		result = +input1 + +input2;
+	} else {
+		result = input1.toString() + input2.toString();
+	}
+
+	return result;
+}
+
+const combineLiteralAges = combineLiteral(30, 40, "as-number");
+
+const combineLiteralNames = combineLiteral("First", "Last", "as-text");
