@@ -146,3 +146,21 @@ function combineCustom(
 const combineCustomAges = combineCustom(30, 40, "as-number");
 
 const combineCustomNames = combineCustom("First", "Last", "as-text");
+
+// FUNCTION RETURN TYPES
+// inferred
+// function addNums(n1: number, n2: number): number
+function addNums(n1: number, n2: number) {
+	const result = n1 + n2;
+	return result;
+}
+
+// specify that there's no return value
+function printResult(num: number): void {
+	console.log("Result: " + num);
+}
+// if return undefined, specify undefined
+function printResult(num: number): undefined {
+	console.log("Result: " + num);
+	return;
+}
