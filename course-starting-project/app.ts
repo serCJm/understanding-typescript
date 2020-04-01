@@ -160,7 +160,22 @@ function printResult(num: number): void {
 	console.log("Result: " + num);
 }
 // if return undefined, specify undefined
-function printResult(num: number): undefined {
+function printResult2(num: number): undefined {
 	console.log("Result: " + num);
 	return;
 }
+
+// FUNCTION as TYPE
+function addNumsFn(n1: number, n2: number) {
+	const result = n1 + n2;
+	return result;
+}
+
+// note, can still assign another function to this var
+let holdsAnyFn: Function;
+holdsAnyFn = addNumsFn;
+// holds only a function that matches the function description
+let holdsMatchFn: (a: number, b: number) => number;
+holdsMatchFn = addNumsFn;
+// throws error
+// holdsMatchFn = printResult;
