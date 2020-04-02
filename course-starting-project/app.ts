@@ -200,3 +200,10 @@ userInput = "Max";
 if (typeof userInput === "string") {
 	userName = userInput; // works!
 }
+
+// NEVER TYPE
+// this function never returns, so void would be wrong, instead use never
+function generateError(message: string, code: number): never {
+	throw { message, errorCode: code };
+}
+generateError("There was an error", 500);
