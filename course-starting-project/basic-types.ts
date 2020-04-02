@@ -6,6 +6,7 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 	const result = n1 + n2;
 	if (showResult) {
 		console.log(phrase + result);
+		return;
 	} else {
 		return result;
 	}
@@ -28,7 +29,7 @@ let person2: {
 	role: [number, string]; // specifies a tuple - ts type. Note, fixed length, however, push still works on it - exception
 };
 
-console.log(person2.name);
+// console.log(person2.name);
 
 let product: {
 	id: string;
