@@ -187,3 +187,16 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
 }
 
 addAndHandle(10, 20, result => console.log(result));
+
+// UNKNOWN TYPE
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = "Max";
+// userName = userInput; // throws an error because userInput is not guaranteed to be a string
+// however, if used userInput: any, it would pass because any removes typechecking
+// instead can add an extra step to remove the error:
+if (typeof userInput === "string") {
+	userName = userInput; // works!
+}
