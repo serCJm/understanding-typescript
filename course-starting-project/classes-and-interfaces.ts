@@ -63,8 +63,21 @@ it.addEmployee("Iron-man");
 it.printEmployeeInformation();
 
 class AccountingDepartment extends Department {
+	private lastReport: string;
+
+	get mostRecentReport() {
+		if (this.lastReport) return this.lastReport;
+		throw new Error("No Report Found");
+	}
+
+	set mostRecentReport(value: string) {
+		if (!value) throw new Error("Please pass in a values");
+		this.addReport(value);
+	}
+
 	constructor(id: string, desc: string, private reports: string[]) {
 		super(id, "Accounting", desc);
+		this.lastReport = reports[0];
 	}
 	addEmployee(name: string) {
 		if (name === "Batman") return;
@@ -74,4 +87,17 @@ class AccountingDepartment extends Department {
 		// add protected modifier
 		this.employees.push(name);
 	}
+	addReport(text: string) {
+		this.reports.push(text);
+		// note, lastReport can not be accessed here because it's private
+		// instead, need to use setters
+		// this.lastReport = text;
+	}
 }
+
+const acc = new AccountingDepartment("acc-id", "acc-descr", []);
+acc.addEmployee("Captain America");
+acc.addReport("earth is safe");
+console.log(acc.mostRecentReport);
+acc.mostRecentReport = "we need money";
+console.log(acc.mostRecentReport);
