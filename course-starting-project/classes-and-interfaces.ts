@@ -1,3 +1,4 @@
+// abstract
 class Department {
 	// private employees: string[] = [];
 	// change to protected to allow inheritated classes to access it
@@ -35,6 +36,10 @@ class Department {
 	// note, can't access static properties in a constructor
 	// by using this. Would need to access on the object itself
 	static fiscalYear = 2020;
+
+	// note, forces inherited classes to provide this methods
+	// note, abstract classes can not be instantiated
+	// abstract provideMoreDescription(this: Department): void;
 }
 
 const accounting = new Department("tests", "Accounting", "some description");
@@ -63,6 +68,10 @@ class ITDepartment extends Department {
 	constructor(id: string, desc: string, public admins: string[]) {
 		super(id, "IT", desc);
 		this.admins = admins;
+	}
+
+	provideMoreDescription() {
+		console.log("IT department");
 	}
 }
 
@@ -102,6 +111,9 @@ class AccountingDepartment extends Department {
 		// note, lastReport can not be accessed here because it's private
 		// instead, need to use setters
 		// this.lastReport = text;
+	}
+	provideMoreDescription() {
+		console.log("Accounting department");
 	}
 }
 
