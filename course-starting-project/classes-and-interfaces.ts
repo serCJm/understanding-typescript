@@ -123,3 +123,55 @@ acc.addReport("earth is safe");
 console.log(acc.mostRecentReport);
 acc.mostRecentReport = "we need money";
 console.log(acc.mostRecentReport);
+
+// SINGLETON CLASS
+// instance can be created only once
+class MarketingDepartment extends Department {
+	private lastReport: string;
+	private static instance: MarketingDepartment;
+
+	get mostRecentReport() {
+		if (this.lastReport) return this.lastReport;
+		throw new Error("No Report Found");
+	}
+
+	set mostRecentReport(value: string) {
+		if (!value) throw new Error("Please pass in a values");
+		this.addReport(value);
+	}
+
+	// private constructor can not be instantiated with new
+	private constructor(id: string, desc: string, private reports: string[]) {
+		super(id, "Marketing", desc);
+		this.lastReport = reports[0];
+	}
+
+	static getInstance() {
+		if (this.instance) return this.instance;
+		this.instance = new MarketingDepartment("mark-id", "best mark dep", []);
+		return this.instance;
+	}
+
+	addEmployee(name: string) {
+		if (name === "Black Widow") return;
+		// note, a private property can not be accessed
+		// instead, to make sure it does not get modified out side the class
+		// yet, you can change it from child calsses
+		// add protected modifier
+		this.employees.push(name);
+	}
+	addReport(text: string) {
+		this.reports.push(text);
+		// note, lastReport can not be accessed here because it's private
+		// instead, need to use setters
+		// this.lastReport = text;
+	}
+	provideMoreDescription() {
+		console.log("Marketing department");
+	}
+}
+
+// always returns the same instance
+const marketing = MarketingDepartment.getInstance();
+const marketing2 = MarketingDepartment.getInstance();
+console.log(marketing === marketing2);
