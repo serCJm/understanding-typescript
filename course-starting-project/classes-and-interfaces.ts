@@ -28,6 +28,13 @@ class Department {
 	printEmployeeInformation() {
 		console.log(this.employees.length);
 	}
+
+	static createEmployee(name: string) {
+		return { name };
+	}
+	// note, can't access static properties in a constructor
+	// by using this. Would need to access on the object itself
+	static fiscalYear = 2020;
 }
 
 const accounting = new Department("tests", "Accounting", "some description");
@@ -48,6 +55,9 @@ const accountingCopy = { describe: accounting.describe };
 // note, this binding is lost now!
 // throws an error when this context is specified in typescript
 // accountingCopy.describe();
+
+const employee1 = Department.createEmployee("Hulk");
+const year = Department.fiscalYear;
 
 class ITDepartment extends Department {
 	constructor(id: string, desc: string, public admins: string[]) {
