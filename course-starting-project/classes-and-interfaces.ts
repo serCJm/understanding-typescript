@@ -1,5 +1,7 @@
 class Department {
-	private employees: string[] = [];
+	// private employees: string[] = [];
+	// change to protected to allow inheritated classes to access it
+	protected employees: string[] = [];
 
 	// note, can add public but it's a default so redundant
 	name: string;
@@ -59,3 +61,17 @@ it.describe();
 it.addEmployee("Wolverine");
 it.addEmployee("Iron-man");
 it.printEmployeeInformation();
+
+class AccountingDepartment extends Department {
+	constructor(id: string, desc: string, private reports: string[]) {
+		super(id, "Accounting", desc);
+	}
+	addEmployee(name: string) {
+		if (name === "Batman") return;
+		// note, a private property can not be accessed
+		// instead, to make sure it does not get modified out side the class
+		// yet, you can change it from child calsses
+		// add protected modifier
+		this.employees.push(name);
+	}
+}
