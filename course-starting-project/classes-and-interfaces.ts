@@ -46,3 +46,16 @@ const accountingCopy = { describe: accounting.describe };
 // note, this binding is lost now!
 // throws an error when this context is specified in typescript
 // accountingCopy.describe();
+
+class ITDepartment extends Department {
+	constructor(id: string, desc: string, public admins: string[]) {
+		super(id, "IT", desc);
+		this.admins = admins;
+	}
+}
+
+const it = new ITDepartment("it-id", "it descr", ["Spider-man"]);
+it.describe();
+it.addEmployee("Wolverine");
+it.addEmployee("Iron-man");
+it.printEmployeeInformation();
