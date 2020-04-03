@@ -8,7 +8,8 @@ class Department {
 	// private id: string;
 	// instead, can specify in constructor
 	// however, public modifiers also need to be specified
-	constructor(private id: string, n: string, public desc: string) {
+	// readonly modifiers set properties so that they can not be changed
+	constructor(private readonly id: string, n: string, public desc: string) {
 		this.id = id;
 		this.name = n;
 		this.name;
