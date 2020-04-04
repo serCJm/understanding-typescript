@@ -62,3 +62,15 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe("Hi there!"));
+
+// "KEYOF" CONSTRAINT
+// function extractAndConvert(obj: object, key: string) {
+// 	return obj[key]; // error! TS does not know if obj has that key
+// }
+// instead, use a generic type with keyof
+function extractAndConvert<T extends object, U extends keyof T>(
+	obj: T,
+	key: U
+) {
+	return obj[key]; // works!
+}
