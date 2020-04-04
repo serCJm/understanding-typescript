@@ -136,3 +136,19 @@ userInputElement.value = "Hi There"; // works!
 // if (userInputElement) {
 //     (userInputElement as HTMLInputElement).value = 'Hi There!'
 // }
+
+// INDEX PROPERTIES
+// useful when don't know what properties will be available
+interface ErrorContainer {
+	// a property that should be present, should be of type string
+	[prop: string]: string;
+	// however, because of index prop, can't have properties of other type
+	// id: number; // error
+	id: string;
+}
+
+const errorBag: ErrorContainer = {
+	email: "Not a valid email",
+	username: "Must start with a capital character",
+	id: "test"
+};
