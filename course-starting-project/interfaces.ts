@@ -47,3 +47,26 @@ class Person implements Greetable {
 
 let user2: Greetable;
 user2 = new Person("James", 30, "spy");
+
+interface Named {
+	readonly name: string;
+}
+
+// note, can also extend from multiple interfaces
+// by separating with a comma
+interface GreetableName extends Named {
+	greet(phrase: string): void;
+}
+
+// can use interfaces as an alternative to function types
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+	(a: number, b: number): number;
+}
+
+{
+	let add: AddFn;
+	add = (n1: number, n2: number) => {
+		return n1 + n2;
+	};
+}
