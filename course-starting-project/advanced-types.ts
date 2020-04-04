@@ -152,3 +152,33 @@ const errorBag: ErrorContainer = {
 	username: "Must start with a capital character",
 	id: "test"
 };
+
+// FUNCTION OVERLOADS
+// function addFuncOver(a: Combinable, b: Combinable) {
+// 	// type guard
+// 	if (typeof a === "string" || typeof b === "string") {
+// 		return a.toString() + b.toString();
+// 	}
+// 	return a + b;
+// }
+
+// const stringResult = addFuncOver('Batman', 'Robin');
+// without function overload
+// would throw an error because TS does not know what type it returns
+// because it can either return a number or string
+// stringResult.split(' '); // error
+// to fix, could use type casting
+// const stringResult = addFuncOver('Batman', 'Robin') as string;
+// however, it's verbose
+// instead, could use function overload:
+function addFuncOver(a: number, b: number): number;
+function addFuncOver(a: string, b: string): string;
+function addFuncOver(a: Combinable, b: Combinable) {
+	// type guard
+	if (typeof a === "string" || typeof b === "string") {
+		return a.toString() + b.toString();
+	}
+	return a + b;
+}
+const stringResult = addFuncOver("Batman", "Robin");
+stringResult.split(" "); // works!
