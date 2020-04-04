@@ -1,5 +1,10 @@
 // BASIC TYPES
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
+function addNumbers(
+	n1: number,
+	n2: number,
+	showResult: boolean,
+	phrase: string
+) {
 	// if (typeof n1 !== "number" || typeof n2 !== "number") {
 	// 	throw new Error("Incorrect input!");
 	// }
@@ -12,7 +17,7 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
 	}
 }
 
-const result = add(5, 8, true, "Result is: ");
+const result = addNumbers(5, 8, true, "Result is: ");
 
 // OBJECT TYPES
 // note, type structure is inferred implicitly
@@ -197,7 +202,7 @@ userInput = 5;
 userInput = "Max";
 // userName = userInput; // throws an error because userInput is not guaranteed to be a string
 // however, if used userInput: any, it would pass because any removes typechecking
-// instead can add an extra step to remove the error:
+// instead can addNumbers an extra step to remove the error:
 if (typeof userInput === "string") {
 	userName = userInput; // works!
 }
