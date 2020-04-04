@@ -74,3 +74,48 @@ function extractAndConvert<T extends object, U extends keyof T>(
 ) {
 	return obj[key]; // works!
 }
+
+// GENERIC CLASSES
+class DataStorage<T> {
+	private data: T[] = [];
+	addItem(item: T) {
+		this.data.push(item);
+	}
+	removeItem(item: T) {
+		this.data.splice(this.data.indexOf(item), 1);
+	}
+	getItems() {
+		return [...this.data];
+	}
+}
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Batman");
+textStorage.addItem("Robin");
+textStorage.removeItem("Robin");
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number>();
+
+const objStorage = new DataStorage<object>();
+objStorage.addItem({ name: "Spider" });
+objStorage.addItem({ name: "Man" });
+// note, because it's an object - bad methods implementation
+// object is passed by ref and indexOf will fail to find that element
+// so removeItem will simply remove the last item from the array
+objStorage.removeItem({ name: "Spider" });
+console.log(objStorage.getItems());
+// a better implementation would be to make sure the class only works with primitives
+// class DataStorage<T extends string | number | boolean> {
+// 	private data: T[] = [];
+// 	addItem(item: T) {
+// 		this.data.push(item);
+// 	}
+// 	removeItem(item: T) {
+//      if (this.data.indexOf(item) === -1) return;
+// 		this.data.splice(this.data.indexOf(item), 1);
+// 	}
+// 	getItems() {
+// 		return [...this.data];
+// 	}
+// }
