@@ -144,3 +144,41 @@ function createCourseGoal(
 // Readonly
 const readonlyNames: Readonly<string[]> = ["Batman", "Robin"];
 // readonlyNames.push("Joker"); // error! can't modify readonlyNames
+
+// GENERIC TYPES VS UNION TYPES
+// saying choose once what type of data it's going to be
+// and then use that data type through the class
+// class DataStorage<T> {
+// 	private data: T[] = [];
+// 	addItem(item: T) {
+// 		this.data.push(item);
+// 	}
+// 	removeItem(item: T) {
+// 		this.data.splice(this.data.indexOf(item), 1);
+// 	}
+// 	getItems() {
+// 		return [...this.data];
+// 	}
+// }
+
+// vs
+
+// class DataStorage {
+// instead of saying that it's either an array of certain values
+// saying that it can store any of them, a mix
+// specifying string[] | number[] | boolean[]
+// would fail too because would not be able to specify
+// either of parameter types to class methods
+// 	private data: (string | number | boolean)[] = [];
+// 	addItem(item: string | number | boolean) {
+// 		this.data.push(item);
+// 	}
+// 	removeItem(item: string | number | boolean) {
+// 		this.data.splice(this.data.indexOf(item), 1);
+// 	}
+// 	getItems() {
+// 		return [...this.data];
+// 	}
+// }
+
+// Generic types allow you to lock in to a certain type while union types give you a flexibility to use either of them.
