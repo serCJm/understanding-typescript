@@ -182,3 +182,32 @@ function addFuncOver(a: Combinable, b: Combinable) {
 }
 const stringResult = addFuncOver("Batman", "Robin");
 stringResult.split(" "); // works!
+
+// OPTIONAL CHAINING
+const fetchUserData = {
+	id: "testid",
+	name: "Batman",
+	job: { title: "hero", desc: "Fights bad guys" }
+};
+
+// console.log(fetchUserData.job.title);
+// however, sometimes data that comes from outside of an app might be incomplete
+// so nested property access would throw an error
+// so to mitigate that we could implement conditional checks
+// if (fetchUserData.job & fetchUserData.job.title) { code here }
+// however, it can be very verbose with deeply nested data
+// so, instead can use optional chaining:
+console.log(fetchUserData?.job?.title);
+
+// NULLISH COALESCING
+const someUserInput = null;
+// in cases where user input is null, store default
+const storedData = someUserInput || "DEFAULT";
+// however, it will also set a default with ALL falsy values
+// const someUserInput = '';
+// const storedData = someUserInput || 'DEFAULT';
+// however, if you want to keep all user inputs other than null (empty)
+// can use nullish coalescing instead
+// only nullish values will be set to default
+// all other falsy values will be set as is
+const storedDataCoalescing = someUserInput ?? "DEFAULT";
