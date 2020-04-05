@@ -3,7 +3,7 @@
 // in order to be able to use decorators
 
 // decorator is a function you apply to a class in a certain way
-// note, property decorators execute during class declaration only!!!
+// note, property decorators execute during declaration only, NOT execution!!!
 
 function Logger(target: Function) {
 	console.log("Logging...");
@@ -114,3 +114,43 @@ class Product {
 		return this._price * (1 + tax);
 	}
 }
+
+// Note, decorators can also return values
+// in the case below, because extending the original class passed to it
+// and returning an extended class
+// to execute, the class will need to be rendered first
+function WithTemplate2(template: string, hookId: string) {
+	// generic is used to say takes original class and extends it returning an object
+	return function <T extends { new (...args: any[]): { name: string } }>(
+		originalContructor: T
+	) {
+		return class extends originalContructor {
+			constructor(..._: any[]) {
+				super();
+				console.log("Rendering template");
+				const hookEl = document.getElementById(hookId);
+				// const p = new originalContructor();
+				if (hookEl) {
+					hookEl.innerHTML = template;
+					hookEl.querySelector("h1")!.textContent = this.name;
+				}
+			}
+		};
+	};
+}
+
+@WithTemplate2("<h1>Hello World</h1>", "app")
+class PersonDecorator3 {
+	name = "Batman";
+
+	constructor() {
+		console.log("Creating person project...");
+	}
+}
+// to execute the decorator return value
+// the class will need to be rendered first
+const pers2 = new PersonDecorator3();
+console.log(pers2);
+
+// NOTE: method and accessor decorator return values are valid
+// HOWEVER, decorator return values on properties and parameters ARE IGNORED
