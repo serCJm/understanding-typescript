@@ -154,3 +154,43 @@ console.log(pers2);
 
 // NOTE: method and accessor decorator return values are valid
 // HOWEVER, decorator return values on properties and parameters ARE IGNORED
+
+// AUTOBIND DECORATOR EXAMPLE
+
+function Autobind(
+	// target
+	_: any,
+	//methodName
+	_2: string,
+	descriptor: PropertyDescriptor
+) {
+	const originalMethod = descriptor.value;
+	const adjustedDescriptor: PropertyDescriptor = {
+		configurable: true,
+		enumerable: false,
+		get() {
+			// this is responsible for what ever triggers the get methods
+			// it will always be triggered by the object that holds the method
+			const boundFn = originalMethod.bind(this);
+			return boundFn;
+		},
+	};
+	return adjustedDescriptor;
+}
+
+class Printer {
+	message = "This works!";
+
+	@Autobind
+	showMessage() {
+		console.log(this.message);
+	}
+}
+
+const p = new Printer();
+
+const btn = document.querySelector("button")!;
+// note, this context on the showMessage is lost without Autobind decorator
+// to fix, could implement bind method
+// btn.addEventListener("click", p.showMessage.bind(p));
+btn.addEventListener("click", p.showMessage);
