@@ -4,17 +4,12 @@
 	"description": "",
 	"main": "app.js",
 	"scripts": {
-		"preinstall": "npx npm-force-resolutions",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "lite-server"
+		"start": "npx live-server"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"lite-server": "^2.5.4",
-		"minimist": "^1.2.5"
-	},
-	"resolutions": {
-		"minimist": "^1.2.5"
+		"live-server": "^1.2.1"
 	}
 }
