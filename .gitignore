@@ -1,5 +1,6 @@
 node_modules
 *.js
 !*.config.js
+!webpack.config.prod.js
 *.map
 *.code-workspace
